@@ -16,6 +16,8 @@ int main()
 	int mana_need[4];
 	int number_tower;
 	int towerhp[6];
+	int route = 1;
+
 while(1){
 	getline(cin,map);
 
@@ -73,15 +75,30 @@ while(1){
 				mana_need[i] = 3;
 				break;
 		}
+
 		if (mana_need[i] <= mana)
 		{
 			if (deck[i] == '9')
 			{
 				cout << "1 9 1 1" << endl << "0" << endl;
+				mana -= mana_need[i];
 			}
 			if (deck[i] != '9')
 			{
-				cout << "1 " << deck[i] << " 5 24" << endl << "0" << endl;
+				route += 1;
+
+				if (route%2 == 0)
+				{
+					cout << "1 " << deck[i] << " 5 24" << endl << "0" << endl;
+					mana -= mana_need[i];
+				}
+				if (route%2 == 1)
+				{
+			 		cout << "1 " << deck[i] << " 16 24" << endl << "0" << endl;
+					mana -= mana_need[i];
+				}
+
+				if (route == 100) route = 0;
 			}
 		}
 	}
