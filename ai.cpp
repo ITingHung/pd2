@@ -15,7 +15,7 @@ int main()
 	char deck[4];
 	int mana_need[4];
 	int number_tower;
-	int towerhp[6];
+	int tower_hp[6];
 	int route = 1;
 
 while(1){
@@ -41,7 +41,7 @@ while(1){
 			if (map == "TOWER")
 			{
 				cin >> number_tower;
-				cin >> towerhp[number_tower];
+				cin >> tower_hp[number_tower];
 			}
 		}
 	}
@@ -87,18 +87,44 @@ while(1){
 			{
 				route += 1;
 
-				if (route%2 == 0)
+				for (int j=0; j<3; j++)
 				{
-					cout << "1 " << deck[i] << " 5 24" << endl << "0" << endl;
-					mana -= mana_need[i];
-				}
-				if (route%2 == 1)
-				{
-			 		cout << "1 " << deck[i] << " 16 24" << endl << "0" << endl;
-					mana -= mana_need[i];
-				}
+					if (tower_hp[j] >= 90)
+					{	
+						if (route%2 == 0)
+						{
+							cout << "1 " << deck[i] << " 5 24" << endl << "0" << endl;
+							mana -= mana_need[i];
+						}
+						if (route%2 == 1)
+						{
+			 				cout << "1 " << deck[i] << " 16 24" << endl << "0" << endl;
+							mana -= mana_need[i];
+						}
+						if (route == 100) route = 0;
+					}
 
-				if (route == 100) route = 0;
+					if (tower_hp[1] <= 90)
+					{
+						 cout << "1 " << deck[i] << " 5 11" << endl << "0" << endl;
+						 mana -= mana_need[i];
+					}
+					if (tower_hp[3] <= 90)
+					{
+					     cout << "1 " << deck[i] << " 16 11" << endl << "0" << endl;
+						 mana -= mana_need[i];
+					}
+					if (tower_hp[2] <= 90 && tower_hp[1] <= 90)
+					{
+						cout << "1 " << deck[i] << " 8 11" << endl << "0" << endl;
+						mana -= mana_need[i];
+					}
+					if (tower_hp[2] <= 90 && tower_hp[3] <= 90)
+					{
+						cout << "1 " << deck[i] << " 13 11" << endl << "0" << endl;
+						mana -= mana_need[i];
+					}
+				}
 			}
 		}
 	}
