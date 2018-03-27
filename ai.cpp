@@ -69,7 +69,7 @@ int main() {
             }
             if (i == 3 && mana_need[i] > mana) cout << "0" << endl;
             if (mana_need[i] <= mana) {
-                if (deck[i] == '9') {
+                if (deck[i] == '9' && tower_hp[1] > 80 && tower_hp[2] >80 && tower_hp[3] > 80) {
                     cout << "1 9 1 1" << endl << "0" << endl;
                     mana -= mana_need[i];
                 }
