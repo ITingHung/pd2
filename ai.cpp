@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     cout << "6 8 1 7 C 4 9 2" << endl;
     string map;
-	int i;
+    int i;
     int mana;
     char deck[4];
     int mana_need[4];
@@ -39,7 +39,7 @@ int main() {
                 }
             }
         }
-		i = 0;
+        i = 0;
         while(i < 4) {
             switch(deck[i]) {
             case '1':
@@ -67,7 +67,7 @@ int main() {
                 mana_need[i] = 3;
                 break;
             }
-			if (i == 3 && mana_need[i] > mana) cout << "0" << endl; 
+            if (i == 3 && mana_need[i] > mana) cout << "0" << endl;
             if (mana_need[i] <= mana) {
                 if (deck[i] == '9') {
                     cout << "1 9 1 1" << endl << "0" << endl;
