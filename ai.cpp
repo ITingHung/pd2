@@ -16,6 +16,11 @@ int main() {
     int number_tower;
     int tower_hp[6];
     int tower_case;
+	char card_exist[8];
+	string card_position[8];
+	string AT;
+	int card_number = 0;
+	string card_hp[8];
     int route = 1;
 
     while(1) {
@@ -37,10 +42,33 @@ int main() {
                     cin >> number_tower;
                     cin >> tower_hp[number_tower];
                 }
+				if (map == "Friend") {
+					cin >> card_exist[card_number];
+					cin >> AT;
+					cin >> card_position[card_number];
+					getline(cin, card_hp[card_number]);
+					card_number += 1;
+				}
             }
         }
         i = 0;
         while(i < 4) {
+			int frag = 0;
+			// Make sure not to cout the card that is existing on map 
+			for (int j; j<card_number; j++){
+				if (card_exist[j] == deck[i]){
+					if (i == 3){
+						cout << "0" << endl;
+						frag = 1;
+						break;
+					}
+					i += 1;
+					frag = 1;
+					break;
+				}
+			}
+			if(frag) break;
+			// Check out how many mana does this card cost
             switch(deck[i]) {
             case '1':
                 mana_need[i] = 5;
@@ -67,15 +95,19 @@ int main() {
                 mana_need[i] = 3;
                 break;
             }
+			// If this turn is unable to cout a card, then cout 0
             if (i == 3 && mana_need[i] > mana) cout << "0" << endl;
+			// Check out if mana is big enough to cout a card
             if (mana_need[i] <= mana) {
+				// Set up card 9's initial position
                 if (deck[i] == '9' && tower_hp[1] > 80 && tower_hp[2] >80 && tower_hp[3] > 80) {
                     cout << "1 9 1 1" << endl << "0" << endl;
                     mana -= mana_need[i];
                 }
+				// Set up other card's initial posion
                 if (deck[i] != '9') {
                     route += 1;
-
+					// Check out if any tower need help
                     if (tower_hp[1] > 90 && tower_hp[2] > 90 && tower_hp[3] >90) tower_case = 0;
                     if (tower_hp[1] <= 90) tower_case = 1;
                     if (tower_hp[3] < tower_hp[1]) tower_case = 2;
@@ -109,10 +141,11 @@ int main() {
                         cout << "1 " << deck[i] << " 13 11" << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
-                    }
+                  }
                 }
                 break;
-            } else {
+            } 
+			else {
                 i += 1;
             }
         }
