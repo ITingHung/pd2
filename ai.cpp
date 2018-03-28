@@ -145,16 +145,18 @@ int main() {
                     switch (tower_case) {
                     case 0:
                         if (route%2 == 0) {
-							X = 5; Y = 24;
+                            X = 5;
+                            Y = 24;
                             /*for(j=0; j<number; j++) {
-								char position[5] = 5,24;
+                            	char position[5] = 5,24;
                                 if (card_position[j] == position || enemy_position[j] == position) Change_position(5.24);
                             }*/
                             cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
                             mana -= mana_need[i];
                         }
                         if (route%2 == 1) {
-							X = 16; Y = 24;
+                            X = 16;
+                            Y = 24;
                             /*for(j=0; j<number; j++) {
                                 if (card_position[j] == "16,24" || enemy_position[j] == "16,24") Chaneg_position(16,24);
                             }*/
@@ -164,7 +166,8 @@ int main() {
                         if (route == 100) route = 0;
                         break;
                     case 1:
-						X = 5; Y = 11;
+                        X = 5;
+                        Y = 11;
                         /*for(j=0; j<number; j++) {
                             if (card_position[j] == "5,11" || enemy_position[j] == "5,11") Change_position(5,11);
                         }*/
@@ -172,10 +175,11 @@ int main() {
                         mana -= mana_need[i];
                         break;
                     case 2:
-						X = 16; Y = 11;
+                        X = 16;
+                        Y = 11;
                         /*for(j=0; j<number; j++) {
                             if (card_position[j] == "16,11" || enemy_position[j] == "16,11") Change_position(16,11)
-						}*/
+                        }*/
                         cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
