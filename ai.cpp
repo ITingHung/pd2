@@ -18,12 +18,16 @@ int main() {
     int tower_number;
     int tower_hp[6];
     int tower_case;
-    char card_exist[8];
+    char card_exist[50];
     string AT;
-    char card_position[8][5];
+    char card_position[50][5];
     string HP;
-    int card_hp[8];
+    int card_hp[50];
     int card_number = 0;
+    char enemy_exist[50];
+    char enemy_position[50][5];
+    int enemy_hp[50];
+    int enemy_number = 0;
     int route = 1;
     int X;
     int Y;
@@ -59,25 +63,18 @@ int main() {
                     cin >> card_hp[card_number];
                     card_number += 1;
                 }
+                if (map == "ENEMY") {
+                    cin >> enemy_exist[enemy_number];
+                    cin >> AT;
+                    cin >> enemy_position[enemy_number];
+                    cin >> HP;
+                    cin >> enemy_hp[enemy_number];
+                    enemy_number += 1;
+                }
             }
         }
 
         while(i < 4) {
-            int frag = 0;
-            // Make sure not to cout the card that is already existing on map
-            for (j=0; j<card_number; j++) {
-                if (card_exist[j] == deck[i]) {
-                    if (i == 3) {
-                        cout << "0" << endl;
-                        frag = 1;
-                        break;
-                    }
-                    i += 1;
-                    frag = 1;
-                    break;
-                }
-            }
-            if(frag) break;
             // Check out how many mana does this card cost
             switch(deck[i]) {
             case '1':
@@ -109,6 +106,23 @@ int main() {
             if (i == 3 && mana_need[i] > mana) cout << "0" << endl;
             // Check out if mana is big enough to cout a card
             if (mana_need[i] <= mana) {
+                // Make sure no enemy card keep going ahead to our tower
+                /*int leave = 0;
+                for (j=0; j<enemy_number; j++) {
+                    for (X=3; X<19; X++) {
+                        for (Y=11 ; Y<18; Y++) {
+                            if (enemy_position[j] == "X,Y") {
+                                cout<< "1" << deck[i] << " " << X << " " << Y-1 << endl << "0" << endl;
+                                mana -= mana_need[i];
+                                leave = 1;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    break;
+                }
+                if (leave) break;*/
                 // Set up card 9's initial position
                 if (deck[i] == '9' && tower_hp[0] > 80 && tower_hp[1] >80 && tower_hp[2] > 80) {
                     cout << "1 9 1 1" << endl << "0" << endl;
@@ -123,55 +137,45 @@ int main() {
                     if (tower_hp[2] < tower_hp[0]) tower_case = 2;
                     if (tower_hp[1] <= 90 && tower_hp[0] <= 90) tower_case = 3;
                     if (tower_hp[1] <= 90 && tower_hp[2] < tower_hp[0]) tower_case =4;
+                    //Compare the number of our card and enemy's card
+                    int number;
+                    if (card_number > enemy_number) number = card_number;
+                    else number = enemy_number;
+                    //When facing different situation, cout the card in different location
                     switch (tower_case) {
                     case 0:
                         if (route%2 == 0) {
-                            X = 5;
-                            Y = 24;
-                            for(j=0; j<8; j++) {
-                                if (card_position[j] == "X,Y") {
-                                    if (X=8) Y += 1;
-                                    if (X<8) X += 1;
-                                }
-                            }
+							X = 5; Y = 24;
+                            /*for(j=0; j<number; j++) {
+								char position[5] = 5,24;
+                                if (card_position[j] == position || enemy_position[j] == position) Change_position(5.24);
+                            }*/
                             cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
                             mana -= mana_need[i];
                         }
                         if (route%2 == 1) {
-                            X2 = 16;
-                            Y2 = 24;
-                            for(j=0; j<8; j++) {
-                                if (card_position[j] == "X2,Y2") {
-                                    if (X2=8) Y2 += 1;
-                                    if (X2<8) X2 += 1;
-                                }
-                            }
-                            cout << "1 " << deck[i] << " " << X2 << " " << Y2 <<  endl << "0" << endl;
+							X = 16; Y = 24;
+                            /*for(j=0; j<number; j++) {
+                                if (card_position[j] == "16,24" || enemy_position[j] == "16,24") Chaneg_position(16,24);
+                            }*/
+                            cout << "1 " << deck[i] << " " << X << " " << Y <<  endl << "0" << endl;
                             mana -= mana_need[i];
                         }
                         if (route == 100) route = 0;
                         break;
                     case 1:
-                        X = 5;
-                        Y = 11;
-                        for(j=0; j<8; j++) {
-                            if (card_position[j] == "X,Y" ) {
-                                if (X=7) Y += 1;
-                                if (X<8) X += 1;
-                            }
-                        }
+						X = 5; Y = 11;
+                        /*for(j=0; j<number; j++) {
+                            if (card_position[j] == "5,11" || enemy_position[j] == "5,11") Change_position(5,11);
+                        }*/
                         cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
                     case 2:
-                        X = 16;
-                        Y = 11;
-                        for(j=0; j<8; j++) {
-                            if (card_position[j] == "X,Y") {
-                                if (X=14) Y += 1;
-                                if (X>13) X += 1;
-                            }
-                        }
+						X = 16; Y = 11;
+                        /*for(j=0; j<number; j++) {
+                            if (card_position[j] == "16,11" || enemy_position[j] == "16,11") Change_position(16,11)
+						}*/
                         cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
