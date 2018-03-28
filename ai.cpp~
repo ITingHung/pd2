@@ -20,7 +20,9 @@ int main() {
     int tower_case;
     char card_exist[8];
     string AT;
-    char card_position[8][5];
+    int card_position_x[8];
+    char comma;
+    int card_position_y[8];
     string HP;
     int card_hp[8];
     int card_number = 0;
@@ -54,7 +56,11 @@ int main() {
                 if (map == "FRIEND") {
                     cin >> card_exist[card_number];
                     cin >> AT;
-                    cin >> card_position[card_number];
+                    cin >> card_position_x[card_number];
+cout << card_position_x << endl;
+                    cin >> comma;
+                    cin >> card_position_y[card_number];
+cout << card_position_y << endl;
                     cin >> HP;
                     cin >> card_hp[card_number];
                     card_number += 1;
@@ -125,28 +131,28 @@ int main() {
                     if (tower_hp[1] <= 90 && tower_hp[2] < tower_hp[0]) tower_case =4;
                     switch (tower_case) {
                     case 0:
+                        X = 5;
+                        Y = 24;
+                        /*for(j=0; j<8; j++){
+                        	if (X == card_position_x[j] && Y == card_position_y[j]){
+                        		if (X=8) Y += 1;
+                        		if (X<8) X += 1;
+                        	}
+                        }*/
                         if (route%2 == 0) {
-                            X = 5;
-                            Y = 24;
-                            for(j=0; j<8; j++) {
-                                if (card_position[j] == "X,Y") {
-                                    if (X=8) Y += 1;
-                                    if (X<8) X += 1;
-                                }
-                            }
-                            cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
+                            cout << "1 " << deck[i] << " 5 24" << endl << "0" << endl;
                             mana -= mana_need[i];
                         }
+                        X2 = 16;
+                        Y2 = 24;
+                        /*for(j=0; j<8; j++){
+                        	if (X2 == card_position_x[j] && Y2 == card_position_y[j]){
+                        		if (X2=8) Y2 += 1;
+                        		if (X2<8) X2 += 1;
+                        	}
+                        }*/
                         if (route%2 == 1) {
-                            X2 = 16;
-                            Y2 = 24;
-                            for(j=0; j<8; j++) {
-                                if (card_position[j] == "X2,Y2") {
-                                    if (X2=8) Y2 += 1;
-                                    if (X2<8) X2 += 1;
-                                }
-                            }
-                            cout << "1 " << deck[i] << " " << X2 << " " << Y2 <<  endl << "0" << endl;
+                            cout << "1 " << deck[i] << " 16 24" << endl << "0" << endl;
                             mana -= mana_need[i];
                         }
                         if (route == 100) route = 0;
@@ -154,25 +160,25 @@ int main() {
                     case 1:
                         X = 5;
                         Y = 11;
-                        for(j=0; j<8; j++) {
-                            if (card_position[j] == "X,Y" ) {
-                                if (X=7) Y += 1;
-                                if (X<8) X += 1;
-                            }
-                        }
-                        cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
+                        /*for(j=0; j<8; j++){
+                        	if (X == card_position_x[j] && Y == card_position_y[j]){
+                        		if (X=7) Y += 1;
+                        		if (X<8) X += 1;
+                        	}
+                        }*/
+                        cout << "1 " << deck[i] << " 5 11" << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
                     case 2:
                         X = 16;
                         Y = 11;
-                        for(j=0; j<8; j++) {
-                            if (card_position[j] == "X,Y") {
-                                if (X=14) Y += 1;
-                                if (X>13) X += 1;
-                            }
-                        }
-                        cout << "1 " << deck[i] << " " << X << " " << Y << endl << "0" << endl;
+                        /*for(j=0; j<8; j++){
+                        	if (X == card_position_x[j] && Y == card_position_y[j]){
+                        		if (X=14) Y += 1;
+                        		if (X>13) X += 1;
+                        	}
+                        }*/
+                        cout << "1 " << deck[i] << " 16 11"  << endl << "0" << endl;
                         mana -= mana_need[i];
                         break;
                     case 3:
