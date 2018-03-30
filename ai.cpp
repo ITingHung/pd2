@@ -164,11 +164,11 @@ int main() {
                     route += 1;
                     // Check out if any tower need help
                     if (tower_hp[0] > 90 && tower_hp[1] > 90 && tower_hp[2] >90) tower_case = 0;
-                    if (tower_hp[0] <= 90) tower_case = 1;
-                    if (tower_hp[2] < tower_hp[0]) tower_case = 2;
+                    if (tower_hp[0] <= 90 || tower_hp[0]>0) tower_case = 1;
+                    if (tower_hp[2] < tower_hp[0] || tower_hp[2] >0) tower_case = 2;
                     if (tower_hp[1] <= 90 && tower_hp[0] <= 90) tower_case = 3;
                     if (tower_hp[1] <= 90 && tower_hp[2] <= 90) tower_case =4;
-                    if (tower_hp[0] == tower_hp[2] && tower_hp[0]<90) tower_case = 5;
+                    if (tower_hp[0] < 70 && tower_hp[2] < 70) tower_case = 5;
                     //Compare the number of our card and enemy's card
                     /* int number;
                      if (card_number > enemy_number) number = card_number;
