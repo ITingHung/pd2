@@ -6,7 +6,7 @@
 
 using namespace std;
 int main() {
-    cout << "C 9 4 5 2 1 6 8" << endl;
+    cout << "8 9 C 5 2 1 6 4" << endl;
     string map;
     int i;
     int j;
@@ -28,7 +28,7 @@ int main() {
     int enemy_hp[50];
     int enemy_number = 0;
     int route = 1;
-    int change_place[4];
+    int change_place[6];
     int X;
     int Y;
     int X2;
@@ -166,9 +166,9 @@ int main() {
                     if (tower_hp[0] > 90 && tower_hp[1] > 90 && tower_hp[2] >90) tower_case = 0;
                     if (tower_hp[0] <= 90) tower_case = 1;
                     if (tower_hp[2] < tower_hp[0]) tower_case = 2;
-                    if (tower_hp[0] == tower_hp[2]) tower_case = 0;
                     if (tower_hp[1] <= 90 && tower_hp[0] <= 90) tower_case = 3;
-                    if (tower_hp[1] <= 90 && tower_hp[2] < tower_hp[0]) tower_case =4;
+                    if (tower_hp[1] <= 90 && tower_hp[2] <= 90) tower_case =4;
+                    if (tower_hp[0] == tower_hp[2] && tower_hp[0]<90) tower_case = 5;
                     //Compare the number of our card and enemy's card
                     /* int number;
                      if (card_number > enemy_number) number = card_number;
@@ -186,7 +186,7 @@ int main() {
                             }*/
                             cout << "1 " << deck[i] << " " << X+change_place[0] << " " << Y << endl;
                             cout << "1 5" << " " << X+change_place[0] << " " << Y-1 << endl << "0" << endl;
-                            if (change_place[0] == 4) change_place[0] = 1;
+                            if (change_place[0] == 4) change_place[0] = 0;
                             mana -= mana_need[i];
                         }
                         if (route%2 == 1) {
@@ -198,7 +198,7 @@ int main() {
                             }*/
                             cout << "1 " << deck[i] << " " << X+change_place[1] << " " << Y <<  endl;
                             cout << "1 5" << " " << X+change_place[1] << " " << Y-1 << endl << "0" << endl;
-                            if (change_place[1] == 4) change_place[1] = 1;
+                            if (change_place[1] == 4) change_place[1] = 0;
                             mana -= mana_need[i];
                         }
                         if (route == 100) route = 0;
@@ -212,7 +212,7 @@ int main() {
                         }*/
                         cout << "1 " << deck[i] << " " << X+change_place[2] << " " << Y << endl;
                         cout << "1 5" << " " << X+change_place[2] << " " << Y-1 << endl << "0" << endl;
-                        if (change_place[2] == 2) change_place[2] = 1;
+                        if (change_place[2] == 2) change_place[2] = 0;
                         mana -= mana_need[i];
                         break;
                     case 2:
@@ -224,7 +224,7 @@ int main() {
                         }*/
                         cout << "1 " << deck[i] << " " << X+change_place[3] << " " << Y << endl;
                         cout << "1 5" << " " << X+change_place[3] << " " << Y-1 << endl<< "0" << endl;
-                        if (change_place[3] == 2) change_place[3] = 1;
+                        if (change_place[3] == 2) change_place[3] = 0;
                         mana -= mana_need[i];
                         break;
                     case 3:
@@ -236,6 +236,27 @@ int main() {
                         cout << "1 " << deck[i] << " 13 13" << endl;
                         cout << "1 5 13 12"<< endl << "0" << endl;
                         mana -= mana_need[i];
+                        break;
+                    case 5:
+                        if (route%2 == 0) {
+                            X = 3;
+                            Y = 13;
+                            change_place[4] += 1;
+                            cout << "1 " << deck[i] << " " << X+change_place[0] << " " << Y << endl;
+                            cout << "1 5" << " " << X+change_place[0] << " " << Y-1 << endl << "0" << endl;
+                            if (change_place[4] == 2) change_place[0] = 0;
+                            mana -= mana_need[i];
+                        }
+                        if (route%2 == 1) {
+                            X = 18;
+                            Y = 13;
+                            change_place[5] -= 1;
+                            cout << "1 " << deck[i] << " " << X+change_place[1] << " " << Y <<  endl;
+                            cout << "1 5" << " " << X+change_place[1] << " " << Y-1 << endl << "0" << endl;
+                            if (change_place[5] == 2) change_place[1] = 0;
+                            mana -= mana_need[i];
+                        }
+                        if (route == 100) route = 0;
                         break;
                     }
                 }
