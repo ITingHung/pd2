@@ -212,7 +212,7 @@ int main() {
                         }*/
                         cout << "1 " << deck[i] << " " << X+change_place[2] << " " << Y << endl;
                         cout << "1 5" << " " << X+change_place[2] << " " << Y-1 << endl << "0" << endl;
-                        if (change_place[2] == 3) change_place[2] = 0;
+                        if (change_place[2] == 5) change_place[2] = 0;
                         mana -= mana_need[i];
                         break;
                     case 2:
@@ -224,7 +224,7 @@ int main() {
                         }*/
                         cout << "1 " << deck[i] << " " << X+change_place[3] << " " << Y << endl;
                         cout << "1 5" << " " << X+change_place[3] << " " << Y-1 << endl<< "0" << endl;
-                        if (change_place[3] == -3) change_place[3] = 0;
+                        if (change_place[3] == -5) change_place[3] = 0;
                         mana -= mana_need[i];
                         break;
                     case 3:
@@ -244,7 +244,7 @@ int main() {
                             change_place[4] += 1;
                             cout << "1 " << deck[i] << " " << X+change_place[4] << " " << Y << endl;
                             cout << "1 5" << " " << X+change_place[4] << " " << Y-1 << endl << "0" << endl;
-                            if (change_place[4] == 3) change_place[4] = 0;
+                            if (change_place[4] == 5) change_place[4] = 0;
                             mana -= mana_need[i];
                         }
                         if (route%2 == 1) {
@@ -253,7 +253,7 @@ int main() {
                             change_place[5] -= 1;
                             cout << "1 " << deck[i] << " " << X+change_place[5] << " " << Y <<  endl;
                             cout << "1 5" << " " << X+change_place[5] << " " << Y-1 << endl << "0" << endl;
-                            if (change_place[5] == -3) change_place[5] = 0;
+                            if (change_place[5] == -5) change_place[5] = 0;
                             mana -= mana_need[i];
                         }
                         cout << endl << route << endl;
