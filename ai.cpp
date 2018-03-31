@@ -131,7 +131,7 @@ int main() {
                 if (leave) break;*/
                 // Set up card 9's initial position
                 if (deck[i] == '9') {
-                    if ((tower_hp[0]>50)&&(tower_hp[1]>50)&&(tower_hp[2]>50)) {
+                    if ((tower_hp[0]>70)&&(tower_hp[1]>70)&&(tower_hp[2]>70)) {
                         cout << "1 9 1 1" << endl << "0" << endl;
                         mana -= mana_need[i];
                         i = 4;
