@@ -131,12 +131,10 @@ int main() {
                 if (leave) break;*/
                 // Set up card 9's initial position
                 if (deck[i] == '9') {
-                    if(tower_hp[0] > 80 && tower_hp[1] > 80 && tower_hp[2] > 80) {
-                        cout << "1 9 1 1" << endl << "0" << endl;
-                        mana -= mana_need[i];
-                        i = 4;
-                        break;
-                    }
+                    cout << "1 9 1 1" << endl << "0" << endl;
+                    mana -= mana_need[i];
+                    i = 4;
+                    break;
                     if(i<3) {
                         i+=1;
                         break;
@@ -166,9 +164,9 @@ int main() {
                     if ((tower_hp[0] > 90) && (tower_hp[1] > 90) && (tower_hp[2] >90)) tower_case = 0;
                     if ((tower_hp[0] <= 90) || (tower_hp[2]==0)) tower_case = 1;
                     if ((tower_hp[2] < tower_hp[0]) || (tower_hp[0]==0)) tower_case = 2;
+                    if ((tower_hp[0] < 80) && (tower_hp[2] < 80)) tower_case = 5;
                     if ((tower_hp[1] <= 90) && (tower_hp[0] <= 80)) tower_case = 3;
                     if ((tower_hp[1] <= 90) && (tower_hp[2] <= 80)) tower_case =4;
-                    if ((tower_hp[0] < 70) && (tower_hp[2] < 70)) tower_case = 5;
                     //Compare the number of our card and enemy's card
                     /* int number;
                      if (card_number > enemy_number) number = card_number;
@@ -256,6 +254,7 @@ int main() {
                             if (change_place[5] == -3) change_place[5] = 0;
                             mana -= mana_need[i];
                         }
+                        cout << endl << route << endl;
                         if (route == 100) route = 0;
                         break;
                     }
