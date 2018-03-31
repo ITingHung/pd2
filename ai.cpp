@@ -256,7 +256,6 @@ int main() {
                             if (change_place[5] == -5) change_place[5] = 0;
                             mana -= mana_need[i];
                         }
-                        cout << endl << route << endl;
                         if (route == 100) route = 0;
                         break;
                     }
