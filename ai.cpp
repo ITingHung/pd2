@@ -109,7 +109,10 @@ int main() {
                 break;
             }
             // If this turn is unable to cout a card, then cout 0
-            if (i == 3 && mana_need[i] > mana) cout << "0" << endl;
+            if (i == 3 && mana_need[i] > mana) {
+                cout << "0" << endl;
+                break;
+            }
             // Check out if mana is big enough to cout a card
             if (mana_need[i] <= mana) {
                 // Make sure no enemy card keep going ahead to our tower
