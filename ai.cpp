@@ -111,7 +111,7 @@ int main() {
             // If this turn is unable to cout a card, then cout 0
             if (i == 3 && mana_need[i] > mana) {
                 cout << "0" << endl;
-                i == 4;
+                i = 4;
                 break;
             }
             // Check out if mana is big enough to cout a card
@@ -143,7 +143,7 @@ int main() {
                     }
                     if(i<3) {
                         i+=1;
-                        break;
+                        continue;
                     }
                     if(i=3) {
                         cout << "0" << endl;
@@ -155,7 +155,7 @@ int main() {
                 if (deck[i] =='5') {
                     if(i<3) {
                         i+=1;
-                        break;
+                        continue;
                     }
                     if(i=3) {
                         cout << "0" << endl;
