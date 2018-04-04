@@ -6,7 +6,7 @@
 
 using namespace std;
 int main() {
-    cout << "8 9 C 5 2 1 6 4" << endl;
+    cout << "4 9 C 5 2 1 6 7" << endl;
     string map;
     int i;
     int j;
@@ -89,8 +89,8 @@ int main() {
             case '5':
                 mana_need[i] = 1;
                 break;
-            case '8':
-                mana_need[i] = 5;
+            case '7':
+                mana_need[i] = 8;
                 break;
             case 'C':
                 mana_need[i] = 7;
